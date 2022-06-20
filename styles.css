@@ -8,3 +8,47 @@ body {
     justify-content: center;
     align-items: center;
 }
+#title {
+    font-weight: bold;
+}
+rect:hover {
+    fill: black;
+}
+
+#legend {
+    width: 80vw;
+    display: flex;
+    flex-direction: left;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 228, 196, 0.692);
+}
+
+.legendRect {
+    margin: auto;
+    height: auto;
+    width: auto;
+    color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+#hot {
+    background-color: rgba(255, 0, 0, 0.602);
+}
+#warm {
+    background-color: rgba(255, 166, 0, 0.619);
+}
+#medHot {
+    background-color: #eaea9a83;
+}
+#medCold {
+    background-color: #91dcd397;
+}
+#cool {
+    background-color: #66a0dc;
+}
+#cold {
+    background-color: #2d079e8b;
+}
+#tooltip {
+    position: fixed;
+}

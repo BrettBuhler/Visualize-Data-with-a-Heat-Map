@@ -58,6 +58,15 @@ let setXandYAxis = () => {
 }
 
 let setCells = () => {
+
+    let tooltip = d3.select('body')
+        .append('div')
+        .attr('id', 'tooltip')
+        .style('visibility', 'hidden')
+        .style('width', 'auto')
+        .style('height', 'auto')
+        .style('top', '70px');
+
     svg.selectAll('rect')
         .data(tableData)
         .enter()
@@ -95,5 +104,17 @@ let setCells = () => {
                 return '#2c079e';
             }
         })
+        .on('mouseover', x => {
+            tooltip.transition()
+                .style('visibility', 'visible')
+                .attr('data-year', x.year)
+
+            tooltip.text("Year: " + x.year + "\n"+ "Temperature: " + (x.variance + 8.66) + " ℃")
+        })
+        .on('mouseout', x => {
+            tooltip.transition()
+                .style('visibility', 'hidden')
+        })
+
 }
 getData();
