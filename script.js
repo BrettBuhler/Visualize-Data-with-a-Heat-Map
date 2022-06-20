@@ -27,12 +27,8 @@ let setCanvas = () => {
 
 let setScale = () => {
 
-    yyScale = d3.scaleLinear()
-        .domain([0,13])
-        .range([padding, h-padding]);
-
-    yScale = d3.scaleLinear()
-        .domain([1,12])
+        yScale = d3.scaleTime()
+        .domain([new Date(0,0,0,0,0,0,0),new Date(0,12,0,0,0,0,0)])
         .range([padding, h-padding]);
 
     xScale = d3.scaleLinear()
@@ -48,9 +44,7 @@ let setXandYAxis = () => {
     let xAxis = d3.axisBottom(xScale)
         .tickFormat(d3.format('d'));
     let yAxis = d3.axisLeft(yScale)
-        .tickFormat((d, i) => {
-            return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][i];
-        });
+        .tickFormat(d3.timeFormat('%B'));
 
     svg.append('g')
         .call(xAxis)
@@ -84,7 +78,7 @@ let setCells = () => {
             return xScale(x.year)
         })
         .attr('y', x => {
-            return yScale(x.month)- (h-(2 * padding))/12
+            return yScale(new Date(0,x.month - 1,0,0,0,0,0))
         })
         .attr('fill', x => {
             if (x.variance >= 3){
